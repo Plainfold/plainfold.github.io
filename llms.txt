@@ -21,6 +21,6 @@ Auth: OAuth sign-in with a free Apify account, or the header `Authorization: Bea
 
 ## Optional
 
-- [MCP Registry entries](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.plainfold): io.github.plainfold/*
+- [MCP Registry entries](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.Plainfold): io.github.Plainfold/*
 - [Apify profile](https://apify.com/plainfold)
 - [GitHub](https://github.com/plainfold)
