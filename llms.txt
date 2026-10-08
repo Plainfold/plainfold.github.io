@@ -1,0 +1,26 @@
+# Plainfold
+
+> Small, honest data tools for people and AI agents. Plainfold publishes pay-per-result data tools that AI agents can call as remote MCP servers (hosted by Apify), plus practical guides.
+
+All tools in one MCP server (streamable HTTP): https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities,plainfold/business-entity-check
+Auth: OAuth sign-in with a free Apify account, or the header `Authorization: Bearer <APIFY_TOKEN>`. Agents without an account can pay per use with x402 or Skyfire through Apify.
+
+## Tools
+
+- [SAM.gov Contract Opportunities](https://apify.com/plainfold/sam-gov-contract-opportunities.md): Search and monitor U.S. federal contract opportunities from SAM.gov's official daily data extract: RFPs, solicitations, sources sought and award notices. Price: $0.002 per result + $0.002 per run. MCP: https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities (tool `plainfold--sam-gov-contract-opportunities`)
+- [US Business Entity Check](https://apify.com/plainfold/business-entity-check.md): Check whether a US company is registered and active, using official state business-registry open data (New York, Colorado, Oregon, Connecticut, Texas). Price: $0.004 per company found, $0.0005 per no-match. MCP: https://mcp.apify.com/?tools=plainfold/business-entity-check (tool `plainfold--business-entity-check`)
+
+## Docs
+
+- [Setup for MCP clients](https://github.com/plainfold/plainfold-mcp/blob/main/README.md): Claude, Claude Code, Cursor, VS Code and generic MCP config, plus example calls
+- [Full details for LLMs](https://plainfold.github.io/llms-full.txt): every tool's inputs, outputs, use cases and prices on one page
+
+## Guides
+
+- [Spain Arrival Kit: Your First 90 Days in Spain](https://plainfold.gumroad.com/l/hvrxff): A calm, step-by-step guide to the NIE, padrón, TIE, bank account, Social Security, autónomo and the Beckham regime, for digital nomad, non-lucrative and student visa holders. 30-page PDF guide plus Notion and Excel trackers, with every rule linked to its official Spanish government source. Price: $27.
+
+## Optional
+
+- [MCP Registry entries](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.plainfold): io.github.plainfold/*
+- [Apify profile](https://apify.com/plainfold)
+- [GitHub](https://github.com/plainfold)

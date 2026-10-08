@@ -1,0 +1,87 @@
+# Plainfold: full tool reference
+
+> Small, honest data tools for people and AI agents.
+
+Updated 2026-10-07.
+
+## How to call these tools
+
+- Remote MCP server (streamable HTTP), all tools: https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities,plainfold/business-entity-check
+- One tool only: https://mcp.apify.com/?tools=plainfold/<tool-slug>
+- Auth: OAuth with an Apify account, or `Authorization: Bearer <APIFY_TOKEN>`. Runs are billed per event at the prices below.
+- Agents without an Apify account: Apify agentic payments (x402 USDC on Base, or Skyfire).
+- Plain HTTP: POST https://api.apify.com/v2/acts/plainfold~<tool-slug>/run-sync-get-dataset-items with the JSON input as the body.
+- The MCP tool for each Actor also accepts `waitSecs` (how long the call waits for results). Longer runs return a run ID; fetch results with get-actor-run / get-dataset-items.
+
+## SAM.gov Contract Opportunities
+
+Search and monitor U.S. federal contract opportunities from SAM.gov's official daily data extract: RFPs, solicitations, sources sought and award notices.
+
+- Returns federal contract opportunities as clean JSON, one row per notice, from SAM.gov's official nightly public extract (not scraped).
+- Filters by keyword, NAICS, PSC, set-aside (small business, 8(a), HUBZone, SDVOSB, WOSB), agency, state, posted date and deadline.
+- Keyword search is relevance-ranked and ignores the FAR/DFARS boilerplate that every defense notice repeats.
+- Can run on a schedule and return only notices that are new since the last run.
+
+Use it for: Finding federal contracts to bid on, daily bid alerts, market research by NAICS/PSC code, and award notices (who won what, for how much).
+Not for: State and local bids, non-U.S. tenders, attachment downloads, or historical spending data (use USAspending.gov).
+Price: $0.002 per opportunity returned + $0.002 per run (about $0.20 per 100 results). No SAM.gov API key needed.
+
+MCP URL: https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities
+MCP tool name: plainfold--sam-gov-contract-opportunities
+Apify page: https://apify.com/plainfold/sam-gov-contract-opportunities
+Full README (markdown): https://apify.com/plainfold/sam-gov-contract-opportunities.md
+
+Example prompt: "Find open small-business cybersecurity contracts on SAM.gov with the soonest deadlines."
+
+Example input:
+
+```json
+{
+  "keywords": [
+    "cybersecurity"
+  ],
+  "setAsides": [
+    "SBA"
+  ],
+  "onlyOpenForResponses": true,
+  "sortBy": "deadlineAsc",
+  "maxResults": 10
+}
+```
+
+## US Business Entity Check
+
+Check whether a US company is registered and active, using official state business-registry open data (New York, Colorado, Oregon, Connecticut, Texas).
+
+- Give it company names; for each one it returns a verdict (active, inactive, status unclear, not found) and the matching registrations.
+- Each registration includes legal name, registry ID, entity type, status, good standing, jurisdiction, formation date and business address.
+- Company records only: it never returns officers, agents, owners or any other personal data.
+- Handles suffix and punctuation differences (Inc vs Inc., L.L.C. vs LLC) and lists similar names separately.
+
+Use it for: Vendor and supplier checks before paying, KYB onboarding, lead qualification, and confirming that a company named in a contract, invoice or email actually exists.
+Not for: People lookups, states other than NY/CO/OR/CT/TX, credit or financial data, or a legal certificate of good standing.
+Price: $0.004 per company found, $0.0005 per lookup with no match, + $0.0005 per run. Failed lookups are not charged.
+
+MCP URL: https://mcp.apify.com/?tools=plainfold/business-entity-check
+MCP tool name: plainfold--business-entity-check
+Apify page: https://apify.com/plainfold/business-entity-check
+Full README (markdown): https://apify.com/plainfold/business-entity-check.md
+
+Example prompt: "Is Arrow Electronics, Inc. a real, active registered company? Which states is it registered in?"
+
+Example input:
+
+```json
+{
+  "companies": [
+    "Arrow Electronics, Inc.",
+    "Kodak Alaris LLC"
+  ]
+}
+```
+
+## Spain Arrival Kit: Your First 90 Days in Spain
+
+A calm, step-by-step guide to the NIE, padrón, TIE, bank account, Social Security, autónomo and the Beckham regime, for digital nomad, non-lucrative and student visa holders. 30-page PDF guide plus Notion and Excel trackers, with every rule linked to its official Spanish government source.
+
+Price: $27 (one-time). Buy: https://plainfold.gumroad.com/l/hvrxff
