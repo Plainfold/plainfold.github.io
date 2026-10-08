@@ -1,17 +1,20 @@
 # Plainfold: full tool reference
 
-> Small, honest data tools for people and AI agents.
+> A small studio making practical guides and data tools. Two separate lines: data tools for businesses, researchers and AI agents, and guides for people making a big move.
 
-Updated 2026-10-07.
+Updated 2026-10-08.
+
+Pages: home https://plainfold.github.io/ · data tools https://plainfold.github.io/tools/ · MCP setup https://plainfold.github.io/tools/#agents · guides https://plainfold.github.io/guides/
 
 ## How to call these tools
 
-- Remote MCP server (streamable HTTP), all tools: https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities,plainfold/business-entity-check
+- Remote MCP server (streamable HTTP), all tools: https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities,plainfold/business-entity-check,plainfold/company-hiring-signals,plainfold/sec-company-financials
 - One tool only: https://mcp.apify.com/?tools=plainfold/<tool-slug>
 - Auth: OAuth with an Apify account, or `Authorization: Bearer <APIFY_TOKEN>`. Runs are billed per event at the prices below.
 - Agents without an Apify account: Apify agentic payments (x402 USDC on Base, or Skyfire).
 - Plain HTTP: POST https://api.apify.com/v2/acts/plainfold~<tool-slug>/run-sync-get-dataset-items with the JSON input as the body.
 - The MCP tool for each Actor also accepts `waitSecs` (how long the call waits for results). Longer runs return a run ID; fetch results with get-actor-run / get-dataset-items.
+- The per-run fee is Apify's Actor-start event (one event per GB of memory, minimum one), shown here at the default memory.
 
 ## SAM.gov Contract Opportunities
 
@@ -30,6 +33,7 @@ MCP URL: https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities
 MCP tool name: plainfold--sam-gov-contract-opportunities
 Apify page: https://apify.com/plainfold/sam-gov-contract-opportunities
 Full README (markdown): https://apify.com/plainfold/sam-gov-contract-opportunities.md
+On this site: https://plainfold.github.io/tools/#sam-gov-contract-opportunities
 
 Example prompt: "Find open small-business cybersecurity contracts on SAM.gov with the soonest deadlines."
 
@@ -49,6 +53,17 @@ Example input:
 }
 ```
 
+Sample output (search “software”):
+
+| Title | NAICS | PSC | Posted |
+|---|---|---|---|
+| Software Defined Radio Solutions (SDRS) Integrated Product Team (IPT) Technical Support | 541330 | K058 | 2026-10-07 |
+| Five Year Contract for Nutrition and Food Service Software and Support, VISN 20 | 513210 | DA10 | 2026-10-07 |
+| High Performance Search and Retrieval Software tool | 519290 | DH10 | 2026-10-07 |
+| DocuWare Software Annual Maintenance and Support Services | 513210 | 7A21 | 2026-10-07 |
+
+Real rows from a keyword test run on Oct 7, 2026, trimmed to four rows and a few columns. Each full row also has the agency, set-aside, deadline, days left, place of performance and a SAM.gov link.
+
 ## US Business Entity Check
 
 Check whether a US company is registered and active, using official state business-registry open data (New York, Colorado, Oregon, Connecticut, Texas).
@@ -66,6 +81,7 @@ MCP URL: https://mcp.apify.com/?tools=plainfold/business-entity-check
 MCP tool name: plainfold--business-entity-check
 Apify page: https://apify.com/plainfold/business-entity-check
 Full README (markdown): https://apify.com/plainfold/business-entity-check.md
+On this site: https://plainfold.github.io/tools/#business-entity-check
 
 Example prompt: "Is Arrow Electronics, Inc. a real, active registered company? Which states is it registered in?"
 
@@ -80,8 +96,137 @@ Example input:
 }
 ```
 
+Sample output (“Arrow Electronics, Inc.”):
+
+| Field | Value |
+|---|---|
+| verdict | active |
+| activeIn | CO, TX, NY, OR, CT |
+| matchCount | 6 |
+| bestMatch.name | ARROW ELECTRONICS, INC. |
+| bestMatch.status | Good Standing (CO) |
+| bestMatch.entityType | Foreign Profit Corporation (FPC) |
+| bestMatch.formationDate | 1979-04-30 |
+| source.registry | Colorado Secretary of State |
+
+From the example output in the tool's README, shortened. Each match also has the registry ID, address and a link to the source dataset.
+
+## Company Jobs & Hiring Signals
+
+Give a company website, name or job-board URL and get its open jobs in one clean format plus a hiring summary: roles by department and location, new postings, hiring velocity and growth hints.
+
+- Finds the company's public job board from its website and auto-detects Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Breezy HR, Personio and BambooHR.
+- Returns every open job in one normalized format: title, department, team, location, remote/hybrid/onsite, seniority, posted date, URL and salary when published.
+- Adds a hiring summary per company: open roles by department, location, seniority and workplace type, roles posted in the last 7/30/90 days, hiring velocity and plain-language growth hints.
+- Optional postedSince filter for monitoring new roles. No personal data: no recruiter or hiring-manager names, emails or phone numbers.
+
+Use it for: Sales and account research, investment and market research (hiring velocity as a growth signal), recruiting and competitive intel, and monitoring a list of companies for new roles.
+Not for: Searching all jobs across the web by keyword (it works company by company), Workday/iCIMS/Taleo-only employers, LinkedIn or Indeed listings, or anything about people.
+Price: $0.003 per company summary (only when a job board is found) + $0.001 per job returned + $0.0005 per run. Companies with no board found are not charged.
+
+MCP URL: https://mcp.apify.com/?tools=plainfold/company-hiring-signals
+MCP tool name: plainfold--company-hiring-signals
+Apify page: https://apify.com/plainfold/company-hiring-signals
+Full README (markdown): https://apify.com/plainfold/company-hiring-signals.md
+On this site: https://plainfold.github.io/tools/#company-hiring-signals
+
+Example prompt: "Is ramp.com hiring right now? Which departments, and how many roles were posted in the last 30 days?"
+
+Example input:
+
+```json
+{
+  "companies": [
+    "ramp.com",
+    "https://jobs.lever.co/spotify",
+    "greenhouse:stripe"
+  ],
+  "postedSince": "7 days",
+  "maxJobsPerCompany": 50
+}
+```
+
+Sample output (ramp.com):
+
+| Field | Value |
+|---|---|
+| companyName | Ramp |
+| ats | ashby |
+| openRoles | 161 |
+| postedLast7Days | 9 |
+| postedLast30Days | 57 |
+| hiringVelocity | high |
+| byDepartment | Sales 63, Engineering 38 |
+| workplace | 131 hybrid, 16 onsite, 14 remote |
+
+Real data from a test run, from the tool's README, shortened. Job records (title, team, location, seniority, salary, link) come as separate rows.
+
+## SEC Company Financials
+
+Get clean annual and quarterly financials for any SEC filer from official EDGAR XBRL data: revenue, net income, EPS, cash flow, assets, liabilities, cash, shares, margins, YoY growth and TTM, plus company info and latest filings with links.
+
+- Returns key financials from official SEC filings (EDGAR XBRL): revenue, gross profit, operating income, net income, EPS, operating and free cash flow, assets, liabilities, equity, cash, long-term debt and shares.
+- Covers the latest fiscal years and quarters, with YoY and QoQ growth, margins and trailing twelve months (TTM).
+- Adds company info (CIK, tickers, exchange, SIC industry, state of incorporation, fiscal year end) and the latest filings with links.
+- Accepts tickers, CIKs or names; US and foreign SEC filers. No person data: insider and ownership filings are hidden by default and individual filers are refused.
+
+Use it for: Answering "how is company X doing?", comparing companies, checking growth and profitability before a sales call, investment research, and citable numbers (every period links to its source filing).
+Not for: Stock prices or market data, private companies that don't file with the SEC, analyst estimates, or full line-by-line statements.
+Price: $0.005 per company returned with financial data + $0.0005 per run. Not-found companies, companies without EDGAR financial data and errors are not charged.
+
+MCP URL: https://mcp.apify.com/?tools=plainfold/sec-company-financials
+MCP tool name: plainfold--sec-company-financials
+Apify page: https://apify.com/plainfold/sec-company-financials
+Full README (markdown): https://apify.com/plainfold/sec-company-financials.md
+On this site: https://plainfold.github.io/tools/#sec-company-financials
+
+Example prompt: "How did Figma do in its last fiscal year? Revenue, growth, margins and free cash flow, with the source filing."
+
+Example input:
+
+```json
+{
+  "companies": [
+    "AAPL",
+    "Figma",
+    "ASML"
+  ],
+  "annualPeriods": 3,
+  "quarterlyPeriods": 4
+}
+```
+
+Sample output (Figma, FY2025):
+
+| Field | Value |
+|---|---|
+| name | Figma, Inc. (FIG, NYSE) |
+| fiscalYear | 2025 |
+| revenue | 1,055,788,000 |
+| revenueGrowthYoYPct | 41 |
+| grossMarginPct | 82.4 |
+| netIncome | −1,250,463,000 |
+| freeCashFlow | 246,237,000 |
+| form · filed | 10-K · 2026-02-18 |
+
+Real data from a test run, from the tool's README, shortened (USD). The full record adds quarters, TTM, ratios and filing links.
+
+# Guides
+
+Guides page: https://plainfold.github.io/guides/
+
 ## Spain Arrival Kit: Your First 90 Days in Spain
 
 A calm, step-by-step guide to the NIE, padrón, TIE, bank account, Social Security, autónomo and the Beckham regime, for digital nomad, non-lucrative and student visa holders. 30-page PDF guide plus Notion and Excel trackers, with every rule linked to its official Spanish government source.
 
+Included:
+- 30-page PDF guide: A 90-day timeline, 10 step-by-step chapters, a document cheat sheet for every step, Spanish phrase scripts and a directory of 40 official sources.
+- Notion template: Task tracker, document tracker and dashboard. Imports in one step.
+- Excel / Google Sheets tracker: Key dates calculator: enter your arrival date and it works out your TIE deadline, Beckham deadline, padrón renewal and more. Plus task and document trackers.
+
+For: digital nomad visa holders (employees and freelancers), non-lucrative visa holders, students on a long-stay study authorisation; US, UK and other non-EU nationals.
+Not for: EU citizens (different registration process), or anyone looking for a visa application guide (the kit starts once you have your visa).
+Information verified as of October 2026. General information, not legal, tax or immigration advice.
+
 Price: $27 (one-time). Buy: https://plainfold.gumroad.com/l/hvrxff
+On this site: https://plainfold.github.io/guides/#kit

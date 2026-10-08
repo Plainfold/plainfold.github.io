@@ -1,26 +1,39 @@
 # Plainfold
 
-> Small, honest data tools for people and AI agents. Plainfold publishes pay-per-result data tools that AI agents can call as remote MCP servers (hosted by Apify), plus practical guides.
+> A small studio with two separate lines of work: pay-per-result data tools for businesses, researchers and AI agents (callable as remote MCP servers hosted by Apify), and practical guides for people making a big move (the Spain Arrival Kit).
 
-All tools in one MCP server (streamable HTTP): https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities,plainfold/business-entity-check
+## Pages
+
+- [Home](https://plainfold.github.io/): what Plainfold is, with one door to each line
+- [Data tools](https://plainfold.github.io/tools/): all 4 tools with prices and sample output; MCP setup at https://plainfold.github.io/tools/#agents
+- [Guides](https://plainfold.github.io/guides/): the Spain Arrival Kit
+
+## Data tools
+
+All 4 tools in one MCP server (streamable HTTP): https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities,plainfold/business-entity-check,plainfold/company-hiring-signals,plainfold/sec-company-financials
 Auth: OAuth sign-in with a free Apify account, or the header `Authorization: Bearer <APIFY_TOKEN>`. Agents without an account can pay per use with x402 or Skyfire through Apify.
+Machine-readable tool list (JSON): https://plainfold.github.io/tools.json
 
-## Tools
+### Tools
 
-- [SAM.gov Contract Opportunities](https://apify.com/plainfold/sam-gov-contract-opportunities.md): Search and monitor U.S. federal contract opportunities from SAM.gov's official daily data extract: RFPs, solicitations, sources sought and award notices. Price: $0.002 per result + $0.002 per run. MCP: https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities (tool `plainfold--sam-gov-contract-opportunities`)
-- [US Business Entity Check](https://apify.com/plainfold/business-entity-check.md): Check whether a US company is registered and active, using official state business-registry open data (New York, Colorado, Oregon, Connecticut, Texas). Price: $0.004 per company found, $0.0005 per no-match. MCP: https://mcp.apify.com/?tools=plainfold/business-entity-check (tool `plainfold--business-entity-check`)
+- [SAM.gov Contract Opportunities](https://apify.com/plainfold/sam-gov-contract-opportunities.md): Search and monitor U.S. federal contract opportunities from SAM.gov's official daily data extract: RFPs, solicitations, sources sought and award notices. Price: $0.002 per opportunity returned + $0.002 per run (about $0.20 per 100 results). No SAM.gov API key needed. MCP: https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities (tool `plainfold--sam-gov-contract-opportunities`). Page: https://plainfold.github.io/tools/#sam-gov-contract-opportunities
+- [US Business Entity Check](https://apify.com/plainfold/business-entity-check.md): Check whether a US company is registered and active, using official state business-registry open data (New York, Colorado, Oregon, Connecticut, Texas). Price: $0.004 per company found, $0.0005 per lookup with no match, + $0.0005 per run. Failed lookups are not charged. MCP: https://mcp.apify.com/?tools=plainfold/business-entity-check (tool `plainfold--business-entity-check`). Page: https://plainfold.github.io/tools/#business-entity-check
+- [Company Jobs & Hiring Signals](https://apify.com/plainfold/company-hiring-signals.md): Give a company website, name or job-board URL and get its open jobs in one clean format plus a hiring summary: roles by department and location, new postings, hiring velocity and growth hints. Price: $0.003 per company summary (only when a job board is found) + $0.001 per job returned + $0.0005 per run. Companies with no board found are not charged. MCP: https://mcp.apify.com/?tools=plainfold/company-hiring-signals (tool `plainfold--company-hiring-signals`). Page: https://plainfold.github.io/tools/#company-hiring-signals
+- [SEC Company Financials](https://apify.com/plainfold/sec-company-financials.md): Get clean annual and quarterly financials for any SEC filer from official EDGAR XBRL data: revenue, net income, EPS, cash flow, assets, liabilities, cash, shares, margins, YoY growth and TTM, plus company info and latest filings with links. Price: $0.005 per company returned with financial data + $0.0005 per run. Not-found companies, companies without EDGAR financial data and errors are not charged. MCP: https://mcp.apify.com/?tools=plainfold/sec-company-financials (tool `plainfold--sec-company-financials`). Page: https://plainfold.github.io/tools/#sec-company-financials
 
 ## Docs
 
 - [Setup for MCP clients](https://github.com/plainfold/plainfold-mcp/blob/main/README.md): Claude, Claude Code, Cursor, VS Code and generic MCP config, plus example calls
 - [Full details for LLMs](https://plainfold.github.io/llms-full.txt): every tool's inputs, outputs, use cases and prices on one page
+- [Tools as JSON](https://plainfold.github.io/tools.json): status, prices, MCP URLs and example inputs
 
 ## Guides
 
-- [Spain Arrival Kit: Your First 90 Days in Spain](https://plainfold.gumroad.com/l/hvrxff): A calm, step-by-step guide to the NIE, padrón, TIE, bank account, Social Security, autónomo and the Beckham regime, for digital nomad, non-lucrative and student visa holders. 30-page PDF guide plus Notion and Excel trackers, with every rule linked to its official Spanish government source. Price: $27.
+- [Spain Arrival Kit: Your First 90 Days in Spain](https://plainfold.gumroad.com/l/hvrxff): A calm, step-by-step guide to the NIE, padrón, TIE, bank account, Social Security, autónomo and the Beckham regime, for digital nomad, non-lucrative and student visa holders. 30-page PDF guide plus Notion and Excel trackers, with every rule linked to its official Spanish government source. Price: $27 (one-time). Page: https://plainfold.github.io/guides/#kit
 
 ## Optional
 
 - [MCP Registry entries](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.Plainfold): io.github.Plainfold/*
 - [Apify profile](https://apify.com/plainfold)
 - [GitHub](https://github.com/plainfold)
+- [X](https://x.com/plainfoldco)

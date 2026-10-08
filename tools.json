@@ -1,0 +1,277 @@
+{
+  "$comment": "Plainfold tools and products. Generated from site-v2/src/data.py. Prices in USD per Apify pay-per-event event.",
+  "updated": "2026-10-08",
+  "brand": {
+    "name": "Plainfold",
+    "tagline": "Guides, templates & small tools. Plain on purpose, never boring.",
+    "site": "https://plainfold.github.io",
+    "github": "https://github.com/plainfold",
+    "repo": "https://github.com/plainfold/plainfold-mcp",
+    "apifyProfile": "https://apify.com/plainfold",
+    "gumroad": "https://plainfold.gumroad.com",
+    "x": "https://x.com/plainfoldco",
+    "registryNamespace": "io.github.Plainfold"
+  },
+  "mcp": {
+    "allToolsUrl": "https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities,plainfold/business-entity-check,plainfold/company-hiring-signals,plainfold/sec-company-financials",
+    "transport": "streamable-http",
+    "auth": "OAuth with an Apify account, or Authorization: Bearer <APIFY_TOKEN>. Agents without an account: x402 or Skyfire via Apify."
+  },
+  "pages": {
+    "home": "https://plainfold.github.io/",
+    "tools": "https://plainfold.github.io/tools/",
+    "agents": "https://plainfold.github.io/tools/#agents",
+    "guides": "https://plainfold.github.io/guides/"
+  },
+  "tools": [
+    {
+      "slug": "sam-gov-contract-opportunities",
+      "name": "SAM.gov Contract Opportunities",
+      "status": "live",
+      "summary": "Search and monitor U.S. federal contract opportunities from SAM.gov's official daily data extract: RFPs, solicitations, sources sought and award notices.",
+      "page": "https://plainfold.github.io/tools/#sam-gov-contract-opportunities",
+      "title": "SAM.gov Contract Opportunities: Federal Bids & Awards",
+      "build": "0.2.2",
+      "url": "https://apify.com/plainfold/sam-gov-contract-opportunities",
+      "readme": "https://apify.com/plainfold/sam-gov-contract-opportunities.md",
+      "mcpUrl": "https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities",
+      "mcpToolName": "plainfold--sam-gov-contract-opportunities",
+      "dataSource": "SAM.gov public data extract",
+      "does": [
+        "Returns federal contract opportunities as clean JSON, one row per notice, from SAM.gov's official nightly public extract (not scraped).",
+        "Filters by keyword, NAICS, PSC, set-aside (small business, 8(a), HUBZone, SDVOSB, WOSB), agency, state, posted date and deadline.",
+        "Keyword search is relevance-ranked and ignores the FAR/DFARS boilerplate that every defense notice repeats.",
+        "Can run on a schedule and return only notices that are new since the last run."
+      ],
+      "useFor": "Finding federal contracts to bid on, daily bid alerts, market research by NAICS/PSC code, and award notices (who won what, for how much).",
+      "notFor": "State and local bids, non-U.S. tenders, attachment downloads, or historical spending data (use USAspending.gov).",
+      "price": "$0.002 per opportunity returned + $0.002 per run (about $0.20 per 100 results). No SAM.gov API key needed.",
+      "pricing": [
+        {
+          "event": "Opportunity returned",
+          "label": "Per opportunity returned",
+          "usd": "0.002"
+        },
+        {
+          "event": "Per run",
+          "label": "Per run",
+          "usd": "0.002"
+        }
+      ],
+      "exampleInput": {
+        "keywords": [
+          "cybersecurity"
+        ],
+        "setAsides": [
+          "SBA"
+        ],
+        "onlyOpenForResponses": true,
+        "sortBy": "deadlineAsc",
+        "maxResults": 10
+      },
+      "examplePrompt": "Find open small-business cybersecurity contracts on SAM.gov with the soonest deadlines.",
+      "keywords": [
+        "government contracts",
+        "SAM.gov",
+        "federal RFPs",
+        "bids",
+        "procurement",
+        "NAICS",
+        "set-asides"
+      ]
+    },
+    {
+      "slug": "business-entity-check",
+      "name": "US Business Entity Check",
+      "status": "live",
+      "summary": "Check whether a US company is registered and active, using official state business-registry open data (New York, Colorado, Oregon, Connecticut, Texas).",
+      "page": "https://plainfold.github.io/tools/#business-entity-check",
+      "title": "US Business Entity Check: Verify a Company Is Real & Active",
+      "build": "0.1.3",
+      "url": "https://apify.com/plainfold/business-entity-check",
+      "readme": "https://apify.com/plainfold/business-entity-check.md",
+      "mcpUrl": "https://mcp.apify.com/?tools=plainfold/business-entity-check",
+      "mcpToolName": "plainfold--business-entity-check",
+      "dataSource": "State registry open data: NY, CO, OR, CT, TX",
+      "does": [
+        "Give it company names; for each one it returns a verdict (active, inactive, status unclear, not found) and the matching registrations.",
+        "Each registration includes legal name, registry ID, entity type, status, good standing, jurisdiction, formation date and business address.",
+        "Company records only: it never returns officers, agents, owners or any other personal data.",
+        "Handles suffix and punctuation differences (Inc vs Inc., L.L.C. vs LLC) and lists similar names separately."
+      ],
+      "useFor": "Vendor and supplier checks before paying, KYB onboarding, lead qualification, and confirming that a company named in a contract, invoice or email actually exists.",
+      "notFor": "People lookups, states other than NY/CO/OR/CT/TX, credit or financial data, or a legal certificate of good standing.",
+      "price": "$0.004 per company found, $0.0005 per lookup with no match, + $0.0005 per run. Failed lookups are not charged.",
+      "pricing": [
+        {
+          "event": "Company found",
+          "label": "Per company found",
+          "usd": "0.004"
+        },
+        {
+          "event": "No match",
+          "label": "Per lookup with no match",
+          "usd": "0.0005"
+        },
+        {
+          "event": "Per run",
+          "label": "Per run",
+          "usd": "0.0005"
+        }
+      ],
+      "exampleInput": {
+        "companies": [
+          "Arrow Electronics, Inc.",
+          "Kodak Alaris LLC"
+        ]
+      },
+      "examplePrompt": "Is Arrow Electronics, Inc. a real, active registered company? Which states is it registered in?",
+      "keywords": [
+        "business verification",
+        "KYB",
+        "company lookup",
+        "secretary of state",
+        "vendor check",
+        "entity status"
+      ]
+    },
+    {
+      "slug": "company-hiring-signals",
+      "name": "Company Jobs & Hiring Signals",
+      "status": "live",
+      "summary": "Give a company website, name or job-board URL and get its open jobs in one clean format plus a hiring summary: roles by department and location, new postings, hiring velocity and growth hints.",
+      "page": "https://plainfold.github.io/tools/#company-hiring-signals",
+      "title": "Company Jobs & Hiring Signals: Open Roles from Any Careers Page",
+      "build": "0.1.5",
+      "url": "https://apify.com/plainfold/company-hiring-signals",
+      "readme": "https://apify.com/plainfold/company-hiring-signals.md",
+      "mcpUrl": "https://mcp.apify.com/?tools=plainfold/company-hiring-signals",
+      "mcpToolName": "plainfold--company-hiring-signals",
+      "dataSource": "Public job-board APIs (Greenhouse, Lever, Ashby and 6 more)",
+      "does": [
+        "Finds the company's public job board from its website and auto-detects Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Breezy HR, Personio and BambooHR.",
+        "Returns every open job in one normalized format: title, department, team, location, remote/hybrid/onsite, seniority, posted date, URL and salary when published.",
+        "Adds a hiring summary per company: open roles by department, location, seniority and workplace type, roles posted in the last 7/30/90 days, hiring velocity and plain-language growth hints.",
+        "Optional postedSince filter for monitoring new roles. No personal data: no recruiter or hiring-manager names, emails or phone numbers."
+      ],
+      "useFor": "Sales and account research, investment and market research (hiring velocity as a growth signal), recruiting and competitive intel, and monitoring a list of companies for new roles.",
+      "notFor": "Searching all jobs across the web by keyword (it works company by company), Workday/iCIMS/Taleo-only employers, LinkedIn or Indeed listings, or anything about people.",
+      "price": "$0.003 per company summary (only when a job board is found) + $0.001 per job returned + $0.0005 per run. Companies with no board found are not charged.",
+      "pricing": [
+        {
+          "event": "Company summary",
+          "label": "Per company summary (job board found)",
+          "usd": "0.003"
+        },
+        {
+          "event": "Job",
+          "label": "Per job returned",
+          "usd": "0.001"
+        },
+        {
+          "event": "Per run",
+          "label": "Per run",
+          "usd": "0.0005"
+        }
+      ],
+      "exampleInput": {
+        "companies": [
+          "ramp.com",
+          "https://jobs.lever.co/spotify",
+          "greenhouse:stripe"
+        ],
+        "postedSince": "7 days",
+        "maxJobsPerCompany": 50
+      },
+      "examplePrompt": "Is ramp.com hiring right now? Which departments, and how many roles were posted in the last 30 days?",
+      "keywords": [
+        "job postings",
+        "hiring signals",
+        "careers page",
+        "Greenhouse",
+        "Lever",
+        "Ashby",
+        "sales intelligence"
+      ]
+    },
+    {
+      "slug": "sec-company-financials",
+      "name": "SEC Company Financials",
+      "status": "live",
+      "summary": "Get clean annual and quarterly financials for any SEC filer from official EDGAR XBRL data: revenue, net income, EPS, cash flow, assets, liabilities, cash, shares, margins, YoY growth and TTM, plus company info and latest filings with links.",
+      "page": "https://plainfold.github.io/tools/#sec-company-financials",
+      "title": "SEC Company Financials: Clean Fundamentals from EDGAR",
+      "build": "0.1.3",
+      "url": "https://apify.com/plainfold/sec-company-financials",
+      "readme": "https://apify.com/plainfold/sec-company-financials.md",
+      "mcpUrl": "https://mcp.apify.com/?tools=plainfold/sec-company-financials",
+      "mcpToolName": "plainfold--sec-company-financials",
+      "dataSource": "SEC EDGAR XBRL data (data.sec.gov)",
+      "does": [
+        "Returns key financials from official SEC filings (EDGAR XBRL): revenue, gross profit, operating income, net income, EPS, operating and free cash flow, assets, liabilities, equity, cash, long-term debt and shares.",
+        "Covers the latest fiscal years and quarters, with YoY and QoQ growth, margins and trailing twelve months (TTM).",
+        "Adds company info (CIK, tickers, exchange, SIC industry, state of incorporation, fiscal year end) and the latest filings with links.",
+        "Accepts tickers, CIKs or names; US and foreign SEC filers. No person data: insider and ownership filings are hidden by default and individual filers are refused."
+      ],
+      "useFor": "Answering \"how is company X doing?\", comparing companies, checking growth and profitability before a sales call, investment research, and citable numbers (every period links to its source filing).",
+      "notFor": "Stock prices or market data, private companies that don't file with the SEC, analyst estimates, or full line-by-line statements.",
+      "price": "$0.005 per company returned with financial data + $0.0005 per run. Not-found companies, companies without EDGAR financial data and errors are not charged.",
+      "pricing": [
+        {
+          "event": "Company financials",
+          "label": "Per company with financial data",
+          "usd": "0.005"
+        },
+        {
+          "event": "Per run",
+          "label": "Per run",
+          "usd": "0.0005"
+        }
+      ],
+      "exampleInput": {
+        "companies": [
+          "AAPL",
+          "Figma",
+          "ASML"
+        ],
+        "annualPeriods": 3,
+        "quarterlyPeriods": 4
+      },
+      "examplePrompt": "How did Figma do in its last fiscal year? Revenue, growth, margins and free cash flow, with the source filing.",
+      "keywords": [
+        "SEC EDGAR",
+        "XBRL",
+        "company financials",
+        "fundamentals",
+        "10-K",
+        "10-Q",
+        "revenue"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "name": "Spain Arrival Kit: Your First 90 Days in Spain",
+      "url": "https://plainfold.gumroad.com/l/hvrxff",
+      "page": "https://plainfold.github.io/guides/#kit",
+      "price": "27",
+      "currency": "USD",
+      "summary": "A calm, step-by-step guide to the NIE, padrón, TIE, bank account, Social Security, autónomo and the Beckham regime, for digital nomad, non-lucrative and student visa holders. 30-page PDF guide plus Notion and Excel trackers, with every rule linked to its official Spanish government source.",
+      "includes": [
+        {
+          "item": "30-page PDF guide",
+          "details": "A 90-day timeline, 10 step-by-step chapters, a document cheat sheet for every step, Spanish phrase scripts and a directory of 40 official sources."
+        },
+        {
+          "item": "Notion template",
+          "details": "Task tracker, document tracker and dashboard. Imports in one step."
+        },
+        {
+          "item": "Excel / Google Sheets tracker",
+          "details": "Key dates calculator: enter your arrival date and it works out your TIE deadline, Beckham deadline, padrón renewal and more. Plus task and document trackers."
+        }
+      ],
+      "informationVerified": "October 2026"
+    }
+  ]
+}

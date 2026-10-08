@@ -1,50 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Plainfold: small, honest data tools for people and AI agents</title>
-<meta name="description" content="Small, honest data tools for people and AI agents. Data tools for AI agents (MCP) and practical guides from Plainfold.">
+<title>Plainfold: a small studio making practical guides and data tools</title>
+<meta name="description" content="Plainfold is a small studio with two lines of work: practical guides for people making a big move (starting with the Spain Arrival Kit), and pay-per-result data tools for businesses, researchers and AI agents.">
 <link rel="canonical" href="https://plainfold.github.io/">
-<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" href="/assets/favicon-32.png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#1F2A44">
+<link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/fraunces-roman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
 <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
-<meta property="og:type" content="website"><meta property="og:title" content="Plainfold"><meta property="og:description" content="Small, honest data tools for people and AI agents. Data tools for AI agents (MCP) and practical guides from Plainfold.">
-<meta property="og:url" content="https://plainfold.github.io/"><meta property="og:image" content="https://plainfold.github.io/assets/og-image.png">
+<link rel="alternate" type="application/json" title="Plainfold tools (JSON)" href="/tools.json">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Plainfold"><meta property="og:title" content="Plainfold: a small studio making practical guides and data tools"><meta property="og:description" content="Plainfold is a small studio with two lines of work: practical guides for people making a big move (starting with the Spain Arrival Kit), and pay-per-result data tools for businesses, researchers and AI agents.">
+<meta property="og:url" content="https://plainfold.github.io/"><meta property="og:image" content="https://plainfold.github.io/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Plainfold: a small studio making practical guides and data tools">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@plainfoldco">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--navy:#1F2A44;--terra:#C4532D;--terra-text:#B04B28;--sand:#F4EDE4;--sand2:#EADFCF;--olive:#6B7F4F;--saffron:#E3A23B;--ink:#2A2F3A;--muted:#676B73}
-*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--sand);color:var(--ink);font:17px/1.6 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif}
-a{color:var(--terra-text)}a:hover{color:var(--navy)}
-h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;color:var(--navy);line-height:1.15;margin:0 0 .4em}
-h1{font-size:clamp(2.1rem,5vw,3.3rem)}h2{font-size:1.9rem;margin-top:0}h3{font-size:1.35rem}
-.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-header.top{padding:28px 0}header.top img{height:40px;width:auto;display:block}
-.hero{position:relative;overflow:hidden;padding:48px 0 64px}
-.hero p.lede{font-size:1.2rem;max-width:620px;color:#444A56}
-.hero .sub{font-family:"Fraunces",Georgia,serif;font-style:italic;color:var(--terra-text);font-size:1.3rem;margin:0 0 .6em}
-.bar{width:72px;height:6px;background:var(--saffron);border-radius:3px;margin:18px 0 22px}
-.mosaic{position:absolute;right:-40px;top:20px;display:grid;grid-template-columns:repeat(3,72px);gap:0;opacity:1}
-.mosaic i{display:block;width:72px;height:72px}
-.kicker{font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:.8rem;color:var(--terra-text);margin:0 0 .5em}
-section{padding:48px 0}section.alt{background:#fff}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:24px}
-.card{background:#fff;border:1px solid var(--sand2);border-radius:14px;padding:24px 24px 18px}
-section.alt .card{background:var(--sand)}
-.card .price{display:inline-block;background:var(--navy);color:var(--sand);border-radius:999px;padding:3px 12px;font-size:.85rem;font-weight:600;margin:4px 0 12px}
-.card ul{padding-left:1.1em;margin:.4em 0 1em}.card li{margin:.25em 0}
-code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85rem}
-code{background:var(--sand2);padding:2px 6px;border-radius:5px;word-break:break-all}
-pre{background:var(--navy);color:var(--sand);padding:14px 16px;border-radius:10px;overflow-x:auto}
-.links a{margin-right:16px;font-weight:600}
-.soon{color:var(--muted)}
-.steps{counter-reset:s;list-style:none;padding:0}.steps li{counter-increment:s;margin:0 0 14px;padding-left:44px;position:relative}
-.steps li:before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--terra);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9rem}
-footer{background:var(--navy);color:var(--sand);padding:36px 0;font-size:.95rem}footer a{color:var(--saffron)}
-@media (max-width:720px){.mosaic{display:none}}
-</style>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -54,8 +25,14 @@ footer{background:var(--navy);color:var(--sand);padding:36px 0;font-size:.95rem}
    "@id": "https://plainfold.github.io/#org",
    "name": "Plainfold",
    "url": "https://plainfold.github.io/",
-   "logo": "https://plainfold.github.io/assets/plainfold-icon-512.png",
-   "description": "Small, honest data tools for people and AI agents.",
+   "logo": {
+    "@type": "ImageObject",
+    "url": "https://plainfold.github.io/assets/plainfold-logo-light.png",
+    "width": 800,
+    "height": 151
+   },
+   "image": "https://plainfold.github.io/assets/plainfold-icon-512.png",
+   "description": "A tiny studio making guides, templates & small tools: the Spain Arrival Kit, and pay-per-result data tools that people and AI agents can run.",
    "sameAs": [
     "https://github.com/plainfold",
     "https://apify.com/plainfold",
@@ -73,92 +50,44 @@ footer{background:var(--navy);color:var(--sand);padding:36px 0;font-size:.95rem}
    }
   },
   {
-   "@type": "ItemList",
-   "name": "Plainfold tools and products",
+   "@type": "WebPage",
+   "@id": "https://plainfold.github.io/#page",
+   "url": "https://plainfold.github.io/",
+   "name": "Plainfold",
+   "description": "Plainfold is a small studio with two lines of work: practical guides for people making a big move (starting with the Spain Arrival Kit), and pay-per-result data tools for businesses, researchers and AI agents.",
+   "isPartOf": {
+    "@id": "https://plainfold.github.io/#site"
+   },
+   "about": {
+    "@id": "https://plainfold.github.io/#org"
+   },
+   "breadcrumb": {
+    "@id": "https://plainfold.github.io/#breadcrumbs"
+   },
+   "hasPart": [
+    {
+     "@type": "CollectionPage",
+     "@id": "https://plainfold.github.io/guides/#page",
+     "url": "https://plainfold.github.io/guides/",
+     "name": "Guides"
+    },
+    {
+     "@type": "CollectionPage",
+     "@id": "https://plainfold.github.io/tools/#page",
+     "url": "https://plainfold.github.io/tools/",
+     "name": "Data tools"
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://plainfold.github.io/#breadcrumbs",
    "itemListElement": [
     {
      "@type": "ListItem",
      "position": 1,
-     "item": {
-      "@type": "SoftwareApplication",
-      "name": "SAM.gov Contract Opportunities",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web (API, MCP)",
-      "url": "https://apify.com/plainfold/sam-gov-contract-opportunities",
-      "description": "Search and monitor U.S. federal contract opportunities from SAM.gov's official daily data extract: RFPs, solicitations, sources sought and award notices.",
-      "publisher": {
-       "@id": "https://plainfold.github.io/#org"
-      },
-      "offers": [
-       {
-        "@type": "Offer",
-        "name": "Per opportunity returned",
-        "price": "0.002",
-        "priceCurrency": "USD"
-       },
-       {
-        "@type": "Offer",
-        "name": "Per run",
-        "price": "0.002",
-        "priceCurrency": "USD"
-       }
-      ]
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 2,
-     "item": {
-      "@type": "SoftwareApplication",
-      "name": "US Business Entity Check",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web (API, MCP)",
-      "url": "https://apify.com/plainfold/business-entity-check",
-      "description": "Check whether a US company is registered and active, using official state business-registry open data (New York, Colorado, Oregon, Connecticut, Texas).",
-      "publisher": {
-       "@id": "https://plainfold.github.io/#org"
-      },
-      "offers": [
-       {
-        "@type": "Offer",
-        "name": "Per company found",
-        "price": "0.004",
-        "priceCurrency": "USD"
-       },
-       {
-        "@type": "Offer",
-        "name": "Per lookup with no match",
-        "price": "0.0005",
-        "priceCurrency": "USD"
-       },
-       {
-        "@type": "Offer",
-        "name": "Per run",
-        "price": "0.0005",
-        "priceCurrency": "USD"
-       }
-      ]
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 3,
-     "item": {
-      "@type": "Product",
-      "name": "Spain Arrival Kit: Your First 90 Days in Spain",
-      "url": "https://plainfold.gumroad.com/l/hvrxff",
-      "description": "A calm, step-by-step guide to the NIE, padrón, TIE, bank account, Social Security, autónomo and the Beckham regime, for digital nomad, non-lucrative and student visa holders. 30-page PDF guide plus Notion and Excel trackers, with every rule linked to its official Spanish government source.",
-      "brand": {
-       "@id": "https://plainfold.github.io/#org"
-      },
-      "offers": {
-       "@type": "Offer",
-       "price": "27",
-       "priceCurrency": "USD",
-       "url": "https://plainfold.gumroad.com/l/hvrxff",
-       "availability": "https://schema.org/InStock"
-      }
-     }
+     "name": "Home",
+     "item": "https://plainfold.github.io/"
     }
    ]
   }
@@ -167,53 +96,78 @@ footer{background:var(--navy);color:var(--sand);padding:36px 0;font-size:.95rem}
 </script>
 </head>
 <body>
-<header class="top"><div class="wrap"><a href="/"><img src="/assets/plainfold-logo-light.svg" alt="Plainfold" width="188" height="40"></a></div></header>
-<main>
-<div class="hero"><div class="mosaic" aria-hidden="true"><i style="background:#C4532D;border-radius:50% 0 50% 0"></i><i style="background:#1F2A44;border-radius:0"></i><i style="background:#E3A23B;border-radius:50%"></i><i style="background:#6B7F4F;border-radius:50% 50% 0 0"></i><i style="background:#E3A23B;border-radius:0 50% 0 50%"></i><i style="background:#C4532D;border-radius:0 0 50% 50%"></i><i style="background:#1F2A44;border-radius:50%"></i><i style="background:#C4532D;border-radius:0"></i><i style="background:#6B7F4F;border-radius:50% 0 50% 0"></i></div><div class="wrap">
-<p class="kicker">Guides, templates &amp; small tools</p>
-<h1>Small, honest data tools<br>for people and AI agents</h1>
-<p class="sub">Plain on purpose, never boring.</p>
-<div class="bar"></div>
-<p class="lede">Plainfold builds focused tools on official public data. AI agents can find them, run them and pay per result through MCP. People can use them too, with no code needed.</p>
-<p class="links"><a href="#tools">See the tools</a><a href="#agents">Connect an agent</a><a href="/llms.txt">llms.txt</a></p>
-</div></div>
-<section id="tools" class="alt"><div class="wrap">
-<p class="kicker">Data tools</p><h2>Tools for agents and people</h2>
-<p>Each tool runs on Apify. You pay only for what you use, and there's no subscription.</p>
-<div class="cards"><article class="card" id="sam-gov-contract-opportunities">
-<h3>SAM.gov Contract Opportunities</h3><span class="price">$0.002 per result + $0.002 per run</span>
-<p>Search and monitor U.S. federal contract opportunities from SAM.gov&#x27;s official daily data extract: RFPs, solicitations, sources sought and award notices.</p>
-<ul><li>Returns federal contract opportunities as clean JSON, one row per notice, from SAM.gov&#x27;s official nightly public extract (not scraped).</li><li>Filters by keyword, NAICS, PSC, set-aside (small business, 8(a), HUBZone, SDVOSB, WOSB), agency, state, posted date and deadline.</li><li>Keyword search is relevance-ranked and ignores the FAR/DFARS boilerplate that every defense notice repeats.</li></ul>
-<p><strong>Use it for:</strong> Finding federal contracts to bid on, daily bid alerts, market research by NAICS/PSC code, and award notices (who won what, for how much).</p>
-<p>MCP URL:<br><code>https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities</code></p>
-<p class="links"><a href="https://apify.com/plainfold/sam-gov-contract-opportunities">Apify page &amp; docs</a><a href="https://github.com/plainfold/plainfold-mcp#samgov-contract-opportunities">Setup</a></p>
-</article><article class="card" id="business-entity-check">
-<h3>US Business Entity Check</h3><span class="price">$0.004 per company found, $0.0005 per no-match</span>
-<p>Check whether a US company is registered and active, using official state business-registry open data (New York, Colorado, Oregon, Connecticut, Texas).</p>
-<ul><li>Give it company names; for each one it returns a verdict (active, inactive, status unclear, not found) and the matching registrations.</li><li>Each registration includes legal name, registry ID, entity type, status, good standing, jurisdiction, formation date and business address.</li><li>Company records only: it never returns officers, agents, owners or any other personal data.</li></ul>
-<p><strong>Use it for:</strong> Vendor and supplier checks before paying, KYB onboarding, lead qualification, and confirming that a company named in a contract, invoice or email actually exists.</p>
-<p>MCP URL:<br><code>https://mcp.apify.com/?tools=plainfold/business-entity-check</code></p>
-<p class="links"><a href="https://apify.com/plainfold/business-entity-check">Apify page &amp; docs</a><a href="https://github.com/plainfold/plainfold-mcp#us-business-entity-check">Setup</a></p>
-</article></div><p class="soon">Coming soon: Company Jobs &amp; Hiring Signals; SEC Company Financials.</p>
-</div></section>
-<section id="agents"><div class="wrap">
-<p class="kicker">For AI agents</p><h2>Connect in a minute</h2>
-<ol class="steps">
-<li>Add this remote MCP server to Claude, Cursor, VS Code or any MCP client:<br><code>https://mcp.apify.com/?tools=plainfold/sam-gov-contract-opportunities,plainfold/business-entity-check</code></li>
-<li>Sign in with a free Apify account (OAuth), or send <code>Authorization: Bearer YOUR_APIFY_TOKEN</code>.</li>
-<li>Ask your question. Runs are billed per result at the prices above. Agents without an account can pay per use with x402 or Skyfire through Apify.</li>
-</ol>
-<p>Client-by-client setup, example calls and registry entries: <a href="https://github.com/plainfold/plainfold-mcp">github.com/plainfold/plainfold-mcp</a>. Listed in the official <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.Plainfold">MCP Registry</a> as <code>io.github.Plainfold/*</code>.</p>
-</div></section>
-<section id="guides" class="alt"><div class="wrap">
-<p class="kicker">Guides &amp; templates</p><h2>Practical guides</h2>
-<div class="cards"><article class="card"><h3>Spain Arrival Kit: Your First 90 Days in Spain</h3><span class="price">$27</span>
-<p>A calm, step-by-step guide to the NIE, padrón, TIE, bank account, Social Security, autónomo and the Beckham regime, for digital nomad, non-lucrative and student visa holders. 30-page PDF guide plus Notion and Excel trackers, with every rule linked to its official Spanish government source.</p><p class="links"><a href="https://plainfold.gumroad.com/l/hvrxff">Get it on Gumroad</a></p></article></div>
-</div></section>
+<a class="skip" href="#main">Skip to content</a>
+<div class="runhead"><div class="wrap"><span>Plainfold · Guides, templates &amp; small tools</span><span class="tnum rh-right">Updated October 2026</span></div></div>
+<header class="masthead"><div class="wrap">
+<a class="logo" href="/" aria-label="Plainfold home"><img src="/assets/plainfold-logo-light-web.svg" alt="Plainfold" width="213" height="34"></a>
+<nav aria-label="Main"><ul><li><a href="/guides/">Guides</a></li><li><a href="/tools/">Data tools</a></li><li><a href="/tools/#agents">For agents</a></li><li><a href="/#about">About</a></li><li><a class="txt" href="/llms.txt">llms.txt</a></li></ul></nav>
+</div></header>
+<main id="main">
+<section class="opening home-open" aria-labelledby="h1">
+<div class="op-mosaic" aria-hidden="true"><img src="/assets/img/mosaic-cover.svg" alt="" width="600" height="400"></div>
+<div class="wrap grid">
+<div class="op-text">
+<p class="kicker">Plainfold</p>
+<h1 id="h1">A small studio making practical guides <span class="amp">&amp;</span> data tools.</h1>
+<p class="motto">Plain on purpose, never boring.</p>
+<span class="bar" aria-hidden="true"></span>
+<p class="lede">Two lines of work, for two very different kinds of people. Pick the door that’s yours.</p>
+</div>
+</div>
+</section>
+
+<div class="doors">
+<section class="door door-guides" id="guides" aria-labelledby="door-g">
+<div class="door-in">
+<span id="kit" class="anchor"></span>
+<p class="door-no">Door 1</p>
+<p class="kicker">For people making a big move</p>
+<h2 id="door-g"><a href="/guides/">Guides</a></h2>
+<p class="door-who">Step-by-step guides that put a move in the right order and link every rule to its official source. The first one covers your first 90 days in Spain.</p>
+<a class="door-art" href="/guides/" aria-label="Spain Arrival Kit pages">
+<img src="/assets/img/kit-cover.webp" alt="" width="909" height="1287" loading="lazy">
+<img src="/assets/img/kit-p04-timeline.webp" alt="" width="909" height="1287" loading="lazy">
+</a>
+<p class="door-item"><a href="/guides/#kit">Spain Arrival Kit</a><span class="dots"></span><span class="pp tnum">$27</span></p>
+<p class="door-meta">30-page PDF guide, Notion template and Excel tracker.</p>
+<p><a class="door-go" href="/guides/">Go to Guides <span aria-hidden="true">→</span></a></p>
+</div>
+</section>
+<section class="door door-tools" id="tools" aria-labelledby="door-t">
+<div class="door-in">
+<p class="door-no">Door 2</p>
+<p class="kicker">For businesses, researchers and AI agents</p>
+<h2 id="door-t"><a href="/tools/">Data tools</a></h2>
+<p class="door-who">Small tools that read public data at the source and charge per result: federal contracts, company registrations, hiring and SEC financials. People run them in a browser; agents call them over MCP.</p>
+<figure class="door-table"><div class="tbl-wrap"><table><caption>Sample output · business entity check</caption><tbody><tr><th scope="row">verdict</th><td>active</td></tr><tr><th scope="row">activeIn</th><td>CO, TX, NY, OR, CT</td></tr><tr><th scope="row">bestMatch.formationDate</th><td>1979-04-30</td></tr></tbody></table></div></figure>
+<ul class="door-list"><li><a id="sam-gov-contract-opportunities" href="/tools/#sam-gov-contract-opportunities">SAM.gov contract opportunities</a><span class="dots"></span><span class="pp tnum">$0.002 <small>per result</small></span></li><li><a id="business-entity-check" href="/tools/#business-entity-check">US business entity check</a><span class="dots"></span><span class="pp tnum">$0.004 <small>per company found</small></span></li><li><a id="company-hiring-signals" href="/tools/#company-hiring-signals">Company jobs &amp; hiring signals</a><span class="dots"></span><span class="pp tnum">$0.003 <small>per company</small></span></li><li><a id="sec-company-financials" href="/tools/#sec-company-financials">SEC company financials</a><span class="dots"></span><span class="pp tnum">$0.005 <small>per company</small></span></li></ul>
+<p><a class="door-go" href="/tools/">Go to Data tools <span aria-hidden="true">→</span></a><a id="agents" class="door-sub" href="/tools/#agents">MCP setup for agents</a></p>
+</div>
+</section>
+</div>
+
+<section class="about-line" id="about" aria-labelledby="about-h">
+<div class="wrap grid">
+<div class="sec-rail"><p class="kicker" id="about-h">About</p></div>
+<div class="about-body">
+<p>Plainfold is a tiny studio. Every guide links its rules to official sources and says who it isn’t for. Every tool reads public data at the source, returns company data rather than people, and charges per result with no subscription. <em>No fluff.</em></p>
+</div>
+</div>
+</section>
 </main>
-<footer><div class="wrap">
-<p><strong>Plainfold</strong>: a tiny studio making guides, templates &amp; small tools.</p>
-<p class="links"><a href="https://apify.com/plainfold">Apify</a><a href="https://github.com/plainfold">GitHub</a><a href="https://plainfold.gumroad.com">Gumroad</a><a href="https://x.com/plainfoldco">X</a><a href="/llms.txt">llms.txt</a></p>
-</div></footer>
+<footer class="foot">
+<div class="wrap grid">
+<div class="foot-brand"><a class="logo" href="/" aria-label="Plainfold home"><img src="/assets/plainfold-logo-dark-web.svg" alt="Plainfold" width="250" height="40" loading="lazy"></a>
+<p class="bio">a tiny studio making guides, templates &amp; small tools. plain on purpose, never boring. no fluff.</p></div>
+<div class="foot-cols">
+<div><h3>Guides</h3><ul><li><a href="/guides/">All guides</a></li><li><a href="https://plainfold.gumroad.com/l/hvrxff">Spain Arrival Kit on Gumroad</a></li></ul></div>
+<div><h3>Data tools</h3><ul><li><a href="/tools/">All tools</a></li><li><a href="https://apify.com/plainfold">Apify Store</a></li><li><a href="/tools/#agents">MCP setup</a></li></ul></div>
+<div><h3>For agents</h3><ul><li><a href="/llms.txt">llms.txt</a></li><li><a href="/llms-full.txt">llms-full.txt</a></li><li><a href="/tools.json">tools.json</a></li></ul></div>
+<div><h3>Studio</h3><ul><li><a href="/">Home</a></li><li><a href="https://x.com/plainfoldco">X @plainfoldco</a></li><li><a href="https://github.com/plainfold">GitHub</a></li></ul></div>
+</div>
+<p class="colophon"><span>Set in Fraunces and Inter (SIL Open Font License), served from this site. Colours and mosaic from the Spain Arrival Kit.</span><span>© 2026 Plainfold</span></p>
+</div>
+<div class="foot-mosaic" aria-hidden="true"><img src="/assets/img/mosaic-strip.svg" alt="" width="576" height="48" loading="lazy"></div>
+</footer>
 </body>
 </html>
